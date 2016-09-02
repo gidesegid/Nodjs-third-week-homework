@@ -27,6 +27,8 @@ app.get('/delete.html',function(request,response){
 //todo list page
 app.get('/todo.html',function(request,response){
  fs.readFile(__dirname+'/todo.txt','utf-8',function(error,data){
+   
+
     if(error==null){
     	response.writeHead(200,{"content-type":"text/plain"});
     	response.write(data);
@@ -55,7 +57,7 @@ app.post('/homePage.html',function(request,response){
 //post data to todo list
 app.post('/post.html',function(request,response){
 	var input=request.body.textboxName;
-	 task = ' ' + input + '\n';
+	 task =input + '\n';
   allTasks=input;
 	fs.appendFile(__dirname + '/todo.txt', input+'\n');
 	response.redirect('/todo.html');
@@ -74,6 +76,7 @@ app.post('/delete.html',function(request,response){
         allTasks[input - 1] =allTasks.splice(input,1);
      
       data = allTasks.join('\n');
+      
       fs.writeFile(__dirname + '/todo.txt', data);
 
      console.log('The task "' + task + '" is being deleted from the tasks');
