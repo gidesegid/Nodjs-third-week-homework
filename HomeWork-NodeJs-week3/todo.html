@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>todo list</title>
+	<script type="text/javascript" src="jquery-1.12.0.js"></script>
+</head>
+<body onload="readFile()">
+<h1>Here are the task list you have</h1>
+<div id="output"></div>
+<script type="text/javascript">
+	function readFile(){
+		jQuery.get("todo.txt",function(txt){
+         $('#output').text(txt);
+		});
+	}
+</script>
+</body>
+</html>

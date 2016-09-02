@@ -1,0 +1,14 @@
+{
+  "name": "nodejshomework3",
+  "version": "6.3.1",
+  "description": "node js request handler third week homework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gide Segid",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
