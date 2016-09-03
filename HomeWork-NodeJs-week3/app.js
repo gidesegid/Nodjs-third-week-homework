@@ -4,34 +4,27 @@ var app=express();
 var fs=require('fs');
 var bodyParser=require('body-parser');
 app.use(bodyParser.urlencoded({extended:true}));
-
 app.get('/',function(request,response){
   response.sendFile(__dirname + '/homePage.html');
-  
 })
 //homepage, the page that can able you to navigate to different pages.
 app.get('/homePage.html',function(request,response){
 	response.sendFile(__dirname+'/homePage.html');
 });
-
 //post to todo list page
 app.get('/post.html',function(request,response){
    response.sendFile(__dirname+'/post.html');
 });
-
  //delete from todo list page
 app.get('/delete.html',function(request,response){
    response.sendFile(__dirname+'/delete.html');
 });
-
 //todo list page
 app.get('/todo.html',function(request,response){
  fs.readFile(__dirname+'/todo.json','utf-8',function(error,data){
-   
-
     if(error==null){
-    	response.writeHead(200,{"content-type":"text/plain"});
-    	response.write(data);
+    	response.writeHead(200,{"content-type":"application/json"});
+    	response.write(JSON.stringify(data));
     }else{
     	response.writeHead(404);
     	response.write('file not found');
@@ -39,7 +32,6 @@ app.get('/todo.html',function(request,response){
     response.end();
   });
 });
-
 //rout to different task events
 app.post('/homePage.html',function(request,response){
     var load=request.body.btnLoad;
