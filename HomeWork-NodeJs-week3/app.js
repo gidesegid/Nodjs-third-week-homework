@@ -26,7 +26,7 @@ app.get('/delete.html',function(request,response){
 
 //todo list page
 app.get('/todo.html',function(request,response){
- fs.readFile(__dirname+'/todo.txt','utf-8',function(error,data){
+ fs.readFile(__dirname+'/todo.json','utf-8',function(error,data){
    
 
     if(error==null){
@@ -59,7 +59,7 @@ app.post('/post.html',function(request,response){
 	var input=request.body.textboxName;
 	 task =input + '\n';
   allTasks=input;
-	fs.appendFile(__dirname + '/todo.txt', input+'\n');
+	fs.appendFile(__dirname + '/todo.json', input+'\n');
 	response.redirect('/todo.html');
 });
 
@@ -69,7 +69,7 @@ app.post('/delete.html',function(request,response){
 	var allTasks;
 	var input=request.body.deleteTextBox;
   //input = args.slice(1).join(' ');
-	  fs.readFile(__dirname + '/todo.txt', 'utf-8', function (error, data) {
+	  fs.readFile(__dirname + '/todo.json', 'utf-8', function (error, data) {
       if (error == null) {
         allTasks = data.split(/\n/);
         task = allTasks[input - 1];
@@ -77,7 +77,7 @@ app.post('/delete.html',function(request,response){
      
       data = allTasks.join('\n');
       
-      fs.writeFile(__dirname + '/todo.txt', data);
+      fs.writeFile(__dirname + '/todo.json', data);
 
      console.log('The task "' + task + '" is being deleted from the tasks');
      console.log('now your task is: '+'\n' + data);
